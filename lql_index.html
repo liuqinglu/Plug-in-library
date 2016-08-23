@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lql ECharts</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <p class="col-sm-3" style="text-indent:2em;">很多对编程感兴趣的朋友都很关心TIOBE编程语言排行榜，因为这个排行反映了编程语言流行趋势。这个榜单每月更新，根据互联网上有经验的程序员、课程和第三方厂商的数量来分析、编辑和整理数据，排名使用谷歌、必应、雅虎、维基百科、YouTube等世界著名引擎进行计算。</p>
+            <!-- 添加一个显示图表的dom -->
+            <div class="col-sm-9" id="main1" style="height:400px"></div>
+        </div>
+        <div class="form-group">
+            <p class="col-sm-3" style="text-indent:2em;">很多对编程感兴趣的朋友都很关心TIOBE编程语言排行榜，因为这个排行反映了编程语言流行趋势。这个榜单每月更新，根据互联网上有经验的程序员、课程和第三方厂商的数量来分析、编辑和整理数据，排名使用谷歌、必应、雅虎、维基百科、YouTube等世界著名引擎进行计算。</p>
+            <!-- 添加一个显示图表的dom -->
+            <div class="col-sm-9" id="main2" style="height:400px"></div>
+        </div>
+    </div>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ECharts单文件引入 -->
+    <script src="build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        //路径配置
+        require.config({
+            paths:{
+                echarts:'build/dist'
+            }
+        });
+        //使用图表
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar',//柱状图
+                'echarts/chart/line'//折线图
+            ],
+            function(ec){
+                //基于准备好的dom，初始化echarts图表
+                var myChart=ec.init(document.getElementById('main1'));
+                var option={
+                    //设置标题
+                    title:{
+                        text:'个人技能',
+                        subtext:'自我评价'
+                    },
+                    //设置显示提示框
+                    tooltip:{
+                        trigger: 'axis',
+                        show:true
+                    },
+                    //显示图例
+                    legend:{
+                        data:['15年掌握程度','16年掌握程度']
+                    },
+                    //设置坐标轴
+                    xAxis:[
+                        {
+                            type:'category',
+                            data:['HTML5','CSS3','JavaScript','jQuery','Bootstrap','Angularjs']
+                        }
+                    ],
+                    yAxis:[
+                        {
+                            type:'value'
+                        }
+                    ],
+                    //设置图表数据
+                    series:[
+                        //柱状图
+                        {
+                            'name':'15年掌握程度',
+                            'type':'bar',
+                            'data':[50,60,32,30,37,1]
+                        },
+                        {
+                            'name':'16年掌握程度',
+                            'type':'bar',
+                            'data':[83,95,81,87,91,11]
+                        },
+                        //折线图
+                        {
+                            'name':'15年掌握程度',
+                            'type':'line',
+                            'data':[50,60,32,30,37,1]
+                        },
+                        {
+                            'name':'16年掌握程度',
+                            'type':'line',
+                            'data':[83,95,81,87,91,11]
+                        }
+                    ]
+                }
+                //为echarts加载数据
+                myChart.setOption(option);
+            }
+        );
+    </script>
+    <script src="js/canvas-nest.js"></script>
+</body>
+</html>
